@@ -1,0 +1,18 @@
+# Core
+opencv-python>=4.5
+mediapipe==0.10.18   # newer versions removed mp.solutions; pin until we migrate to mp.tasks
+numpy>=1.21,<2.0
+scipy>=1.7
+
+# HMM
+hmmlearn>=0.3
+scikit-learn>=1.0
+
+# Music control
+pyautogui>=0.9
+
+# Visualization / evaluation
+matplotlib>=3.5
+
+# Dev (optional)
+pytest>=7.0

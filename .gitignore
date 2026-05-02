@@ -216,3 +216,16 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# WaveTune project-specific
+data/raw/
+data/processed/
+data/debug/
+data/results/
+data/*.npy
+data/*.csv
+data/*.mp4
+data/*.avi
+models/*.pkl
+models/*.joblib
+*.DS_Store
