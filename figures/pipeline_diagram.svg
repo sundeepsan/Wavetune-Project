@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 380" font-family="Helvetica, Arial, sans-serif">
+  <!-- WaveTune system pipeline. Six runtime stages, training path shown as a side-feed. -->
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#444"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#3a6ea5"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="600" y="30" text-anchor="middle" font-size="18" font-weight="600" fill="#222">WaveTune real-time gesture recognition pipeline</text>
+
+  <!-- ============================ RUNTIME ROW (y ~ 130) ============================ -->
+  <!-- Six stages, horizontal flow.  Each box is 165 wide, gap 12, starts at x = 30. -->
+
+  <!-- Stage 1: Webcam -->
+  <g>
+    <rect x="30" y="130" width="165" height="100" rx="10" fill="#e8f1fb" stroke="#3a6ea5" stroke-width="1.5"/>
+    <text x="112" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#1f3d63">1. Webcam capture</text>
+    <text x="112" y="184" text-anchor="middle" font-size="11" fill="#1f3d63">OpenCV @ ~30 fps</text>
+    <text x="112" y="202" text-anchor="middle" font-size="11" fill="#1f3d63">AVFoundation backend</text>
+    <text x="112" y="218" text-anchor="middle" font-size="11" fill="#1f3d63">horizontal flip</text>
+  </g>
+
+  <!-- arrow -->
+  <line x1="195" y1="180" x2="207" y2="180" stroke="#444" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 2: Landmarks -->
+  <g>
+    <rect x="207" y="130" width="165" height="100" rx="10" fill="#e3f1e6" stroke="#4a8e62" stroke-width="1.5"/>
+    <text x="289" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#23492e">2. Landmark detection</text>
+    <text x="289" y="184" text-anchor="middle" font-size="11" fill="#23492e">MediaPipe Hands</text>
+    <text x="289" y="201" text-anchor="middle" font-size="11" fill="#23492e">(21 pts) or</text>
+    <text x="289" y="218" text-anchor="middle" font-size="11" fill="#23492e">FaceMesh (468 pts)</text>
+  </g>
+
+  <line x1="372" y1="180" x2="384" y2="180" stroke="#444" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 3: Centroid + velocity -->
+  <g>
+    <rect x="384" y="130" width="165" height="100" rx="10" fill="#e3f1e6" stroke="#4a8e62" stroke-width="1.5"/>
+    <text x="466" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#23492e">3. Centroid + velocity</text>
+    <text x="466" y="184" text-anchor="middle" font-size="11" fill="#23492e">mean of landmarks</text>
+    <text x="466" y="201" text-anchor="middle" font-size="11" fill="#23492e">5-frame moving avg</text>
+    <text x="466" y="218" text-anchor="middle" font-size="11" fill="#23492e">trim_to_motion</text>
+  </g>
+
+  <line x1="549" y1="180" x2="561" y2="180" stroke="#444" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 4: Symbol encoding -->
+  <g>
+    <rect x="561" y="130" width="165" height="100" rx="10" fill="#fff3d6" stroke="#b58a17" stroke-width="1.5"/>
+    <text x="643" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#5b4007">4. Symbol encoding</text>
+    <text x="643" y="184" text-anchor="middle" font-size="11" fill="#5b4007">24 symbols</text>
+    <text x="643" y="201" text-anchor="middle" font-size="11" fill="#5b4007">8 directions ×</text>
+    <text x="643" y="218" text-anchor="middle" font-size="11" fill="#5b4007">3 speed bins</text>
+  </g>
+
+  <line x1="726" y1="180" x2="738" y2="180" stroke="#444" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 5: HMM classification -->
+  <g>
+    <rect x="738" y="130" width="165" height="100" rx="10" fill="#fbe6dc" stroke="#a35434" stroke-width="1.5"/>
+    <text x="820" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#5a2a14">5. HMM classification</text>
+    <text x="820" y="184" text-anchor="middle" font-size="11" fill="#5a2a14">forward algorithm</text>
+    <text x="820" y="201" text-anchor="middle" font-size="11" fill="#5a2a14">argmax + confidence</text>
+    <text x="820" y="218" text-anchor="middle" font-size="11" fill="#5a2a14">margin gate</text>
+  </g>
+
+  <line x1="903" y1="180" x2="915" y2="180" stroke="#444" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 6: Command -->
+  <g>
+    <rect x="915" y="130" width="165" height="100" rx="10" fill="#f1e2f1" stroke="#76387b" stroke-width="1.5"/>
+    <text x="997" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#3d1d40">6. Music control</text>
+    <text x="997" y="184" text-anchor="middle" font-size="11" fill="#3d1d40">pyautogui media key</text>
+    <text x="997" y="201" text-anchor="middle" font-size="11" fill="#3d1d40">prev / next track,</text>
+    <text x="997" y="218" text-anchor="middle" font-size="11" fill="#3d1d40">vol up / vol down</text>
+  </g>
+
+  <!-- ============================ TRAINING PATH (y ~ 290) ============================ -->
+  <!-- A small path showing how trained HMMs feed into stage 5. -->
+
+  <g>
+    <rect x="384" y="290" width="165" height="60" rx="10" fill="#f3eef9" stroke="#5e4d8f" stroke-width="1.2" stroke-dasharray="4 3"/>
+    <text x="466" y="316" text-anchor="middle" font-size="12" font-weight="600" fill="#352669">Labeled .npy samples</text>
+    <text x="466" y="334" text-anchor="middle" font-size="10" fill="#352669">(SPACE-START / STOP recording)</text>
+  </g>
+
+  <line x1="549" y1="320" x2="640" y2="320" stroke="#5e4d8f" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="4 3"/>
+
+  <g>
+    <rect x="640" y="290" width="165" height="60" rx="10" fill="#f3eef9" stroke="#5e4d8f" stroke-width="1.2" stroke-dasharray="4 3"/>
+    <text x="722" y="316" text-anchor="middle" font-size="12" font-weight="600" fill="#352669">Train one HMM/class</text>
+    <text x="722" y="334" text-anchor="middle" font-size="10" fill="#352669">Baum–Welch + smoothing</text>
+  </g>
+
+  <!-- arrow from training output up into stage 5 -->
+  <path d="M 722 290 Q 722 260 820 230" fill="none" stroke="#5e4d8f" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+  <text x="755" y="265" font-size="10" fill="#352669" font-style="italic">trained HMM bank</text>
+
+  <!-- "offline" / "live" labels -->
+  <text x="35" y="120" font-size="11" font-weight="700" fill="#444">LIVE PIPELINE</text>
+  <text x="380" y="280" font-size="11" font-weight="700" fill="#5e4d8f">OFFLINE TRAINING</text>
+
+  <!-- music apps below stage 6 -->
+  <text x="997" y="252" text-anchor="middle" font-size="10" fill="#666" font-style="italic">target apps:</text>
+  <text x="997" y="266" text-anchor="middle" font-size="10" fill="#666">Spotify · Apple Music ·</text>
+  <text x="997" y="278" text-anchor="middle" font-size="10" fill="#666">Amazon Music · YouTube Music</text>
+</svg>

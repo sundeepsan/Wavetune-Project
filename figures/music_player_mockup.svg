@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" font-family="Helvetica, Arial, sans-serif">
+  <!-- background card -->
+  <rect x="40" y="40" width="820" height="400" rx="20" fill="#1a1a1d" stroke="#2c2c34" stroke-width="2"/>
+
+  <!-- album artwork placeholder -->
+  <defs>
+    <linearGradient id="art" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7a4dba"/>
+      <stop offset="100%" stop-color="#3a6ea5"/>
+    </linearGradient>
+  </defs>
+  <rect x="80" y="80" width="240" height="240" rx="14" fill="url(#art)"/>
+  <text x="200" y="215" text-anchor="middle" font-size="48" fill="#ffffff" opacity="0.4">♪</text>
+
+  <!-- track info -->
+  <text x="360" y="125" font-size="28" font-weight="700" fill="#ffffff">Now Playing</text>
+  <text x="360" y="170" font-size="22" fill="#cfd2db">Sample Track Title</text>
+  <text x="360" y="200" font-size="16" fill="#8a8e9c">Artist · Album · 2026</text>
+
+  <!-- progress bar -->
+  <rect x="360" y="240" width="460" height="6" rx="3" fill="#2c2c34"/>
+  <rect x="360" y="240" width="160" height="6" rx="3" fill="#7a4dba"/>
+  <circle cx="520" cy="243" r="7" fill="#ffffff"/>
+  <text x="360" y="270" font-size="13" fill="#8a8e9c">1:24</text>
+  <text x="820" y="270" text-anchor="end" font-size="13" fill="#8a8e9c">3:42</text>
+
+  <!-- transport controls -->
+  <!-- prev -->
+  <g transform="translate(440, 320)">
+    <circle cx="0" cy="0" r="32" fill="#2c2c34" stroke="#4a4d5a" stroke-width="1.5"/>
+    <path d="M -10 -10 L -10 10 M -10 0 L 10 -10 L 10 10 Z" fill="#ffffff" stroke="#ffffff" stroke-width="1.5" stroke-linejoin="round"/>
+  </g>
+  <!-- play/pause -->
+  <g transform="translate(540, 320)">
+    <circle cx="0" cy="0" r="40" fill="#7a4dba"/>
+    <path d="M -10 -14 L -10 14 L 12 0 Z" fill="#ffffff"/>
+  </g>
+  <!-- next -->
+  <g transform="translate(640, 320)">
+    <circle cx="0" cy="0" r="32" fill="#2c2c34" stroke="#4a4d5a" stroke-width="1.5"/>
+    <path d="M 10 -10 L 10 10 M 10 0 L -10 -10 L -10 10 Z" fill="#ffffff" stroke="#ffffff" stroke-width="1.5" stroke-linejoin="round"/>
+  </g>
+
+  <!-- volume -->
+  <g transform="translate(740, 320)">
+    <path d="M -16 -8 L -8 -8 L 0 -16 L 0 16 L -8 8 L -16 8 Z" fill="#ffffff"/>
+    <path d="M 6 -10 Q 14 0 6 10" stroke="#ffffff" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- gesture mapping callouts -->
+  <g font-size="13" fill="#cfd2db">
+    <line x1="440" y1="285" x2="440" y2="270" stroke="#7a4dba" stroke-width="1.2" stroke-dasharray="3 2"/>
+    <text x="440" y="262" text-anchor="middle" fill="#7a4dba" font-weight="600">swipe_left / head_left</text>
+
+    <line x1="640" y1="285" x2="640" y2="270" stroke="#7a4dba" stroke-width="1.2" stroke-dasharray="3 2"/>
+    <text x="640" y="262" text-anchor="middle" fill="#7a4dba" font-weight="600">swipe_right / head_right</text>
+
+    <line x1="740" y1="345" x2="740" y2="395" stroke="#7a4dba" stroke-width="1.2" stroke-dasharray="3 2"/>
+    <text x="740" y="412" text-anchor="middle" fill="#7a4dba" font-weight="600">hand_up / head_up · vol +</text>
+    <text x="740" y="427" text-anchor="middle" fill="#7a4dba" font-weight="600">hand_down / head_down · vol −</text>
+  </g>
+
+  <!-- bottom caption -->
+  <text x="450" y="475" text-anchor="middle" font-size="12" fill="#888" font-style="italic">
+    Music-player mockup. WaveTune emits OS-level media keys; any media-aware app responds.
+  </text>
+</svg>
